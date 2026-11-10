@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="110" fill="#0a8f66" />
+  <!-- Mountains -->
+  <path d="M20 480 L180 140 L340 480 Z" fill="#054b37" />
+  <path d="M180 140 L210 200 L150 200 Z" fill="#ffffff" />
+  <path d="M210 480 L380 190 L500 480 Z" fill="#0fa87a" />
+  <path d="M380 190 L406 238 L354 238 Z" fill="#ffffff" />
+  <!-- Road -->
+  <path d="M70 480 C 170 440, 190 370, 266 370 C 342 370, 364 440, 460 480" fill="none" stroke="#ffffff" stroke-width="36" stroke-linecap="round" />
+  <text x="256" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-size="120" font-weight="900" letter-spacing="4" fill="#ffffff">NP</text>
+</svg>

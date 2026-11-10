@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NurPoput — Нет соединения с интернетом</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 36px 24px;
+      max-width: 420px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      border: 1px solid #e2e8f0;
+    }
+    .icon {
+      font-size: 54px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 22px;
+      margin: 0 0 10px;
+      color: #0a8f66;
+    }
+    p {
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.5;
+      margin: 0 0 24px;
+    }
+    button {
+      background: #0a8f66;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon">🏔️🚙</div>
+    <h1>NurPoput оффлайн</h1>
+    <p>Похоже, пропало интернет-соединение (например, на горном перевале). Проверьте связь и нажмите «Повторить».</p>
+    <button onclick="window.location.reload()">🔄 Повторить попытку</button>
+  </div>
+</body>
+</html>

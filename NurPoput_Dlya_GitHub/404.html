@@ -1,0 +1,1497 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#087f5b" />
+    <meta
+      name="description"
+      content="NurPoput — поиск попутчиков, поездки по Кыргызстану и отправка посылок."
+    />
+    <meta name="google-site-verification" content="gt6Dx_smJdnk-QvrjXF71b1MirmomPvu4udGXL73OaY" />
+    <title>NurPoput — вместе выгоднее</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon-192.svg" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="NurPoput" />
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" class="logo" data-page="home">
+        <svg class="logo-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <rect width="48" height="48" rx="13" fill="#0a8f66" />
+          <path d="M1 44 L16 12 L31 44 Z" fill="#054b37" />
+          <path d="M16 12 L18.8 17.4 L13.2 17.4 Z" fill="#ffffff" />
+          <path d="M19 44 L35 17 L48 44 Z" fill="#0fa87a" />
+          <path d="M35 17 L37.5 21.6 L32.5 21.6 Z" fill="#ffffff" />
+          <path
+            d="M6 44 C 15 40.5, 17 34, 24 34 C 31 34, 33 40.5, 42 44"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="3.4"
+            stroke-linecap="round"
+          />
+          <text
+            x="24"
+            y="12.5"
+            text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="800"
+            letter-spacing="0.5"
+            fill="#ffffff"
+          >
+            NP
+          </text>
+        </svg>
+        <span>Nur<span class="logo-green">Poput</span></span>
+      </a>
+
+      <div class="lang-switch" id="langSwitch" title="Тил тандоо / Выбор языка">
+        <button type="button" class="lang-btn active" data-lang="ru">RU</button>
+        <span class="lang-divider">|</span>
+        <button type="button" class="lang-btn" data-lang="kg">KG</button>
+      </div>
+
+      <button id="menuButton" class="menu-button" aria-label="Открыть меню">
+        ☰
+      </button>
+
+      <nav id="navigation" class="navigation">
+        <button class="nav-link" data-page="home">Главная</button>
+        <button class="nav-link" data-page="find">🔍 Найти машину</button>
+        <button class="nav-link" data-page="publish">🚗 Опубликовать поездку</button>
+        <button class="nav-link" data-page="parcels">Посылки</button>
+        <button class="nav-link" data-page="safety">Безопасность</button>
+        <button class="nav-link install-app-btn" id="navInstallAppBtn" style="color: var(--green); font-weight: 700;">
+          📲 Скачать приложение
+        </button>
+        <button
+          id="messagesButton"
+          class="nav-link"
+          data-page="messages"
+          hidden
+        >
+          💬 Сообщения
+          <span id="messageBadge" class="notification-badge" hidden>0</span>
+        </button>
+        <button
+          id="notificationsButton"
+          class="nav-link notifications-link"
+          data-page="profile"
+          hidden
+        >
+          🔔 Уведомления
+          <span id="notificationBadge" class="notification-badge" hidden
+            >0</span
+          >
+        </button>
+        <button
+          id="adminNavButton"
+          class="nav-link admin-nav-link"
+          data-page="admin"
+          style="color: #dc2626; font-weight: 700;"
+          hidden
+        >
+          🛡️ Админ-панель
+        </button>
+      </nav>
+
+      <button id="accountButton" class="account-button">Войти</button>
+    </header>
+
+    <main>
+      <!-- ГЛАВНАЯ -->
+      <section id="homePage" class="page active">
+        <div class="hero">
+          <div class="hero-content">
+            <span class="badge" id="heroBadge">🇰🇬 Создано для Кыргызстана</span>
+            <h1 id="heroTitle">Дорога становится<br /><span>ближе вместе</span></h1>
+            <p id="heroDesc">
+              Находи попутчиков, делись поездками и отправляй посылки между
+              городами Кыргызстана.
+            </p>
+
+            <div class="hero-buttons">
+              <button class="primary-button" data-page="find" id="heroFindBtn" style="white-space: nowrap;">
+                🔍 Найти машину
+              </button>
+              <button class="secondary-button" data-page="publish" id="heroPublishBtn" style="white-space: nowrap;">
+                🚗 Опубликовать поездку
+              </button>
+              <button class="secondary-button" data-page="parcels" id="heroParcelBtn" style="white-space: nowrap;">
+                📦 Отправить посылку
+              </button>
+            </div>
+
+            <div class="hero-note">
+              <span>✓ Удобный поиск</span>
+              <span>✓ Цены в сомах</span>
+              <span>✓ Поездки по Кыргызстану</span>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="route-icon">🚙</div>
+            <div class="route-label" id="heroPopRoute">Популярное направление</div>
+            <div class="route">
+              <div>
+                <strong>Бишкек</strong>
+                <small id="heroDepLabel">Отправление</small>
+              </div>
+              <span class="route-line">────────→</span>
+              <div>
+                <strong>Ош</strong>
+                <small id="heroArrLabel">Прибытие</small>
+              </div>
+            </div>
+            <div class="route-bottom">
+              <span>Кыргызстан 🇰🇬</span>
+              <span id="heroEcoLabel">Выгоднее вместе</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- БЫСТРЫЙ ПОИСК МАРШРУТОВ ПРЯМО НА ГЛАВНОЙ СТРАНИЦЕ -->
+        <div class="home-search-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+            <h2 id="homeSearchHeading" style="margin: 0; font-size: 20px;">🔍 Найти подходящую машину</h2>
+            <span style="font-size: 13px; color: var(--green); font-weight: 700; background: #ecfdf5; padding: 4px 10px; border-radius: 8px; border: 1px solid #a7f3d0;">
+              ✓ Пассажирам бесплатно
+            </span>
+          </div>
+          <form id="homeSearchForm" class="home-search-grid" style="grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));">
+            <div>
+              <label for="homeSearchFrom" id="lblHomeFrom">Откуда</label>
+              <select id="homeSearchFrom" required></select>
+            </div>
+            <div>
+              <label for="homeSearchTo" id="lblHomeTo">Куда</label>
+              <select id="homeSearchTo" required></select>
+            </div>
+            <div>
+              <label for="homeSearchDate" id="lblHomeDate">Дата поездки</label>
+              <input id="homeSearchDate" type="date" />
+            </div>
+            <div>
+              <label for="homeSearchTime" id="lblHomeTime">Время</label>
+              <input id="homeSearchTime" type="time" title="Желаемое время отправления" />
+            </div>
+            <div>
+              <label for="homeSearchPassengers" id="lblHomePassengers">Мест</label>
+              <select id="homeSearchPassengers">
+                <option value="1">1 место</option>
+                <option value="2">2 места</option>
+                <option value="3">3 места</option>
+                <option value="4">4 места</option>
+                <option value="5">5 мест</option>
+                <option value="6">6 мест</option>
+                <option value="7">7 мест</option>
+                <option value="8">8 мест</option>
+              </select>
+            </div>
+            <div>
+              <label for="homeSearchCarClass" id="lblHomeCarClass">Класс авто</label>
+              <select id="homeSearchCarClass">
+                <option value="">Любой класс</option>
+                <option value="economy">Эконом</option>
+                <option value="comfort">Комфорт</option>
+                <option value="business">Бизнес</option>
+                <option value="minivan">Минивэн</option>
+                <option value="premium">Премиум</option>
+              </select>
+            </div>
+            <div style="display: flex; gap: 8px; align-self: flex-end;">
+              <button type="submit" class="primary-button" id="btnHomeSearch" style="min-height: 46px; white-space: nowrap; flex: 1;">
+                Найти
+              </button>
+              <button type="button" class="secondary-button" id="btnHomeReset" style="min-height: 46px; white-space: nowrap;" title="Сбросить фильтр и показать все">
+                Все
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- ПЕРЕКЛЮЧАТЕЛЬ: ДОСТУПНЫЕ ПОЕЗДКИ И ЗАКАЗЫ НА ПОСЫЛКИ -->
+        <div class="home-tabs">
+          <button type="button" class="home-tab-btn active" id="tabHomeRides" data-home-tab="rides">
+            🚗 Доступные поездки (<span id="homeRidesCount">0</span>)
+          </button>
+          <button type="button" class="home-tab-btn" id="tabHomeParcels" data-home-tab="parcels">
+            📦 Заказы на доставку (<span id="homeParcelsCount">0</span>)
+          </button>
+        </div>
+
+        <!-- СПИСОК ДОСТУПНЫХ ПОЕЗДОК -->
+        <div id="homeRidesSection">
+          <div id="homeRidesList" class="cards-stream">
+            <!-- Динамические карточки поездок -->
+          </div>
+        </div>
+
+        <!-- СПИСОК ЗАКАЗОВ НА ДОСТАВКУ ПОСЫЛОК -->
+        <div id="homeParcelsSection" style="display: none;">
+          <div id="homeParcelsList" class="cards-stream">
+            <!-- Динамические карточки посылок -->
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <span class="eyebrow">ВОЗМОЖНОСТИ</span>
+          <h2>Куда ты направляешься?</h2>
+          <p>Выбери, что хочешь сделать сегодня.</p>
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon green">🔎</div>
+            <h3>Найти машину</h3>
+            <p>Выбери класс авто (эконом, комфорт, бизнес, минивэн, премиум) и подходящего водителя.</p>
+            <button class="text-button" data-page="find">Найти машину →</button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon blue">🚗</div>
+            <h3>Опубликовать поездку</h3>
+            <p>Укажи марку, модель, цвет, гос. номер авто и цену. VIP-поездки находят клиентов быстрее.</p>
+            <button class="text-button" data-page="publish">
+              Опубликовать поездку →
+            </button>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon orange">📦</div>
+            <h3>Отправить посылку</h3>
+            <p>Найди подходящий маршрут для отправки вещей.</p>
+            <button class="text-button" data-page="parcels">Подробнее →</button>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon purple">🛡️</div>
+            <h3>Безопасность</h3>
+            <p>Узнай, как безопаснее пользоваться сервисом.</p>
+            <button class="text-button" data-page="safety">Правила →</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- ВХОД И РЕГИСТРАЦИЯ -->
+      <section id="authPage" class="page">
+        <div class="auth-container">
+          <div class="auth-intro">
+            <span class="badge">Добро пожаловать</span>
+            <h1>Твои поездки<br /><span>начинаются здесь</span></h1>
+            <p>
+              Создай аккаунт NurPoput, чтобы пользоваться возможностями сервиса.
+            </p>
+          </div>
+
+          <div class="auth-card">
+            <div class="auth-tabs">
+              <button class="auth-tab active" data-auth-tab="login">
+                Войти
+              </button>
+              <button class="auth-tab" data-auth-tab="register">
+                Регистрация
+              </button>
+            </div>
+
+            <form id="authForm">
+              <label for="authName" id="nameLabel" class="hidden">Имя</label>
+              <input
+                id="authName"
+                type="text"
+                placeholder="Твоё имя"
+                autocomplete="name"
+                class="hidden"
+              />
+
+              <label for="authPhone" id="phoneLabel" class="hidden">Номер телефона</label>
+              <input
+                id="authPhone"
+                type="tel"
+                placeholder="+996 555 12 34 56"
+                autocomplete="tel"
+                maxlength="25"
+                class="hidden"
+              />
+
+              <label for="authEmail" id="emailLabel">Электронная почта или телефон</label>
+              <input
+                id="authEmail"
+                type="text"
+                placeholder="example@mail.com или +996..."
+                autocomplete="username"
+                required
+              />
+
+              <label for="authPassword">Пароль</label>
+              <input
+                id="authPassword"
+                type="password"
+                placeholder="Не менее 6 символов"
+                autocomplete="current-password"
+                minlength="6"
+                required
+              />
+
+              <p id="authMessage" class="form-message" role="status"></p>
+
+              <button
+                id="authSubmit"
+                type="submit"
+                class="primary-button full-width"
+              >
+                Войти
+              </button>
+            </form>
+
+            <p class="auth-forgot">
+              Забыли пароль?
+              <button id="forgotLink" type="button" class="text-button">
+                Восстановить доступ
+              </button>
+            </p>
+
+            <p class="auth-disclaimer">
+              Регистрируясь, ты соглашаешься с правилами безопасности сервиса.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ВОССТАНОВЛЕНИЕ ПАРОЛЯ -->
+      <section id="forgotPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">ВОССТАНОВЛЕНИЕ ДОСТУПА</span>
+          <h1>Забыли пароль?</h1>
+          <p>Введи почту и номер телефона своего аккаунта, чтобы задать новый пароль.</p>
+        </div>
+
+        <form id="forgotForm" class="form-card">
+          <div class="form-group" id="forgotEmailGroup">
+            <label for="forgotEmail">Электронная почта</label>
+            <input
+              id="forgotEmail"
+              type="email"
+              placeholder="example@mail.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="form-group" id="forgotPhoneGroup">
+            <label for="forgotPhone">Номер телефона</label>
+            <input
+              id="forgotPhone"
+              type="tel"
+              placeholder="+996 555 12 34 56"
+              maxlength="25"
+              required
+            />
+          </div>
+
+          <div class="form-grid hidden" id="forgotCodeFields">
+            <div class="form-group">
+              <label for="forgotCode">Код (6 цифр)</label>
+              <input
+                id="forgotCode"
+                type="text"
+                inputmode="numeric"
+                maxlength="6"
+                placeholder="6 цифр"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="forgotPassword">Новый пароль</label>
+              <input
+                id="forgotPassword"
+                type="password"
+                minlength="6"
+                placeholder="Не менее 6 символов"
+                autocomplete="new-password"
+              />
+            </div>
+          </div>
+
+          <p id="forgotMessage" class="form-message" role="status"></p>
+
+          <button id="forgotSubmit" type="submit" class="primary-button">
+            Получить код
+          </button>
+          <button type="button" class="secondary-button full-width" data-page="auth">
+            Вернуться ко входу
+          </button>
+        </form>
+      </section>
+
+      <!-- ПОИСК ПОЕЗДКИ / НАЙТИ МАШИНУ -->
+      <section id="findPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">ДЛЯ ПАССАЖИРОВ</span>
+          <h1>🔍 Найти машину</h1>
+          <p>Выбери маршрут, дату, время, количество мест и класс автомобиля. Все функции для пассажиров бесплатны!</p>
+        </div>
+
+        <form id="searchRideForm" class="form-card">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="searchFrom">Откуда</label>
+              <select id="searchFrom" required>
+                <option value="">Выбери город</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="searchTo">Куда</label>
+              <select id="searchTo" required>
+                <option value="">Выбери город</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="searchDate">Дата поездки</label>
+              <input id="searchDate" type="date" required />
+            </div>
+
+            <div class="form-group">
+              <label for="searchTime">Желаемое время</label>
+              <input id="searchTime" type="time" title="Время отправления (необязательно)" />
+            </div>
+
+            <div class="form-group">
+              <label for="searchPassengers">Сколько мест нужно</label>
+              <select id="searchPassengers">
+                <option value="1">1 место</option>
+                <option value="2">2 места</option>
+                <option value="3">3 места</option>
+                <option value="4">4 места</option>
+                <option value="5">5 мест</option>
+                <option value="6">6 мест</option>
+                <option value="7">7 мест</option>
+                <option value="8">8 мест</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="searchCarClass">Класс автомобиля</label>
+              <select id="searchCarClass">
+                <option value="">Любой класс авто</option>
+                <option value="economy">🟢 Эконом</option>
+                <option value="comfort">🔵 Комфорт</option>
+                <option value="business">🟣 Бизнес</option>
+                <option value="minivan">🟡 Минивэн (7-8 мест)</option>
+                <option value="premium">👑 Премиум</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 6px;">
+            <button type="submit" class="primary-button" style="flex: 2;">
+              🔍 Найти подходящих водителей
+            </button>
+            <button type="button" id="btnResetSearchRide" class="secondary-button" style="flex: 1;">
+              Показать все
+            </button>
+          </div>
+        </form>
+
+        <div id="rideResults" class="results-container">
+          <div class="empty-state">
+            <span>🚙</span>
+            <h3>Твоя следующая поездка начинается здесь</h3>
+            <p>Выбери города, дату и класс автомобиля, чтобы искать подходящих водителей.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ПУБЛИКАЦИЯ ПОЕЗДКИ -->
+      <section id="publishPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">ДЛЯ ВОДИТЕЛЕЙ</span>
+          <h1>🚗 Опубликуй поездку</h1>
+          <p>Укажи марку, модель, цвет, гос. номер авто и цену. Публикация бесплатна, а VIP поднимет поездку в топ!</p>
+        </div>
+
+        <form id="publishRideForm" class="form-card">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="publishFrom">Откуда</label>
+              <select id="publishFrom" required>
+                <option value="">Выбери город</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="publishTo">Куда</label>
+              <select id="publishTo" required>
+                <option value="">Выбери город</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="publishDate">Дата отправления</label>
+              <input id="publishDate" type="date" required />
+            </div>
+
+            <div class="form-group">
+              <label for="publishTime">Время</label>
+              <input id="publishTime" type="time" required />
+            </div>
+
+            <div class="form-group">
+              <label for="publishSeats">Свободные места</label>
+              <select id="publishSeats" required>
+                <option value="1">1 место</option>
+                <option value="2">2 места</option>
+                <option value="3">3 места</option>
+                <option value="4" selected>4 места</option>
+                <option value="5">5 мест</option>
+                <option value="6">6 мест</option>
+                <option value="7">7 мест</option>
+                <option value="8">8 мест (Минивэн)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="publishPrice">Цена за пассажира (сом)</label>
+              <input
+                id="publishPrice"
+                type="number"
+                min="1"
+                max="100000"
+                placeholder="Например, 1000"
+                required
+              />
+            </div>
+
+            <!-- ВЫБОР КЛАССА АВТОМОБИЛЯ -->
+            <div class="form-group">
+              <label for="publishCarClass">Класс автомобиля</label>
+              <select id="publishCarClass" required>
+                <option value="comfort" selected>🔵 Комфорт</option>
+                <option value="economy">🟢 Эконом</option>
+                <option value="business">🟣 Бизнес</option>
+                <option value="minivan">🟡 Минивэн</option>
+                <option value="premium">👑 Премиум</option>
+              </select>
+            </div>
+
+            <!-- МАРКА АВТОМОБИЛЯ -->
+            <div class="form-group">
+              <label for="publishCarBrand">Марка автомобиля</label>
+              <select id="publishCarBrand" required>
+                <option value="Toyota" selected>Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Kia">Kia</option>
+                <option value="Lexus">Lexus</option>
+                <option value="BMW">BMW</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="Daewoo">Daewoo</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Audi">Audi</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Другая">Другая марка</option>
+              </select>
+            </div>
+
+            <!-- МОДЕЛЬ АВТОМОБИЛЯ -->
+            <div class="form-group">
+              <label for="publishCarModel">Модель автомобиля</label>
+              <input
+                id="publishCarModel"
+                type="text"
+                maxlength="60"
+                placeholder="Например, Camry 70 / Fit / Stepwgn"
+                required
+              />
+            </div>
+
+            <!-- ЦВЕТ АВТОМОБИЛЯ -->
+            <div class="form-group">
+              <label for="publishCarColor">Цвет автомобиля</label>
+              <select id="publishCarColor" required>
+                <option value="Белый" selected>⚪ Белый</option>
+                <option value="Черный">⚫ Черный</option>
+                <option value="Серебристый">🔘 Серебристый</option>
+                <option value="Серый">🩶 Серый</option>
+                <option value="Мокрый асфальт">🌚 Мокрый асфальт</option>
+                <option value="Синий">🔵 Синий</option>
+                <option value="Красный">🔴 Красный</option>
+                <option value="Золотистый">🟡 Золотистый / Бежевый</option>
+                <option value="Зеленый">🟢 Зеленый</option>
+                <option value="Другой">🎨 Другой цвет</option>
+              </select>
+            </div>
+
+            <!-- ГОСУДАРСТВЕННЫЙ НОМЕР -->
+            <div class="form-group">
+              <label for="publishCarPlate">Гос. номер автомобиля</label>
+              <input
+                id="publishCarPlate"
+                type="text"
+                maxlength="20"
+                placeholder="Например, 01KG 777 ABC"
+                style="text-transform: uppercase;"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="publishPhone">Телефон для связи</label>
+              <input
+                id="publishPhone"
+                type="tel"
+                maxlength="25"
+                placeholder="+996 ..."
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="publishComment">Дополнительная информация</label>
+            <textarea
+              id="publishComment"
+              rows="3"
+              maxlength="500"
+              placeholder="Место встречи, кондиционер, багаж и другие условия"
+            ></textarea>
+          </div>
+
+          <!-- БЛОК VIP ПРИ ПУБЛИКАЦИИ -->
+          <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+            <label style="display: flex; align-items: flex-start; gap: 10px; cursor: pointer; font-size: 14px; font-weight: 700; color: #92400e; margin: 0;">
+              <input type="checkbox" id="publishIsVip" style="width: 20px; height: 20px; margin-top: 2px;" />
+              <span>
+                🔥 Сделать поездку VIP (+50 сом)<br>
+                <small style="font-weight: 400; color: #78350f; font-size: 12px; display: block; margin-top: 3px; line-height: 1.4;">
+                  Ваша поездка поднимется на самое 1-е место в поиске с сияющим бейджем. Пассажиры заметят её первыми и забронируют быстрее! (Спишется с баланса водителя).
+                </small>
+              </span>
+            </label>
+          </div>
+
+          <div class="notice">
+            <strong>Важно:</strong> публикация бесплатна! Поездка появится в поиске сразу, и пассажиры смогут бронировать места.
+          </div>
+
+          <button type="submit" class="primary-button" style="font-size: 16px;">
+            🚗 Опубликовать поездку
+          </button>
+          <p id="publishMessage" class="form-message" role="status"></p>
+        </form>
+      </section>
+
+      <!-- ПОСЫЛКИ -->
+      <section id="parcelsPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">ОТПРАВКА ВЕЩЕЙ</span>
+          <h1>Посылки</h1>
+          <p>Найди посылку в дорогу или оформи заявку на отправку.</p>
+        </div>
+
+        <div class="auth-tabs parcel-tabs">
+          <button class="auth-tab active" data-parcel-tab="search">
+            🔎 Найти посылку
+          </button>
+          <button class="auth-tab" data-parcel-tab="publish">
+            📦 Оформить заявку
+          </button>
+        </div>
+
+        <div id="parcelSearchBlock">
+          <form id="parcelSearchForm" class="form-card">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="parcelSearchFrom">Откуда</label>
+                <select id="parcelSearchFrom">
+                  <option value="">Любой город</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="parcelSearchTo">Куда</label>
+                <select id="parcelSearchTo">
+                  <option value="">Любой город</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="parcelSearchDate">Дата</label>
+                <input id="parcelSearchDate" type="date" />
+              </div>
+            </div>
+
+            <button type="submit" class="primary-button">
+              Найти посылки
+            </button>
+          </form>
+
+          <div id="parcelResults" class="results-container">
+            <div class="empty-state">
+              <span>📦</span>
+              <h3>Посылок пока не найдено</h3>
+              <p>
+                Выбери маршрут и дату или нажми «Найти посылки», чтобы
+                посмотреть все открытые заявки.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div id="parcelPublishBlock" class="hidden">
+          <form id="parcelForm" class="form-card">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="parcelFrom">Город отправления</label>
+                <select id="parcelFrom" required>
+                  <option value="">Выбери город</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="parcelTo">Город получения</label>
+                <select id="parcelTo" required>
+                  <option value="">Выбери город</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="senderName">Имя отправителя</label>
+                <input id="senderName" type="text" maxlength="100" required />
+              </div>
+
+              <div class="form-group">
+                <label for="senderPhone">Телефон отправителя</label>
+                <input id="senderPhone" type="tel" maxlength="25" required />
+              </div>
+
+              <div class="form-group">
+                <label for="recipientName">Имя получателя</label>
+                <input id="recipientName" type="text" maxlength="100" required />
+              </div>
+
+              <div class="form-group">
+                <label for="recipientPhone">Телефон получателя</label>
+                <input id="recipientPhone" type="tel" maxlength="25" required />
+              </div>
+
+              <div class="form-group">
+                <label for="parcelDate">Желаемая дата</label>
+                <input id="parcelDate" type="date" required />
+              </div>
+
+              <div class="form-group">
+                <label for="parcelSize">Размер посылки</label>
+                <select id="parcelSize" required>
+                  <option value="">Выбери размер</option>
+                  <option value="Маленькая">Маленькая</option>
+                  <option value="Средняя">Средняя</option>
+                  <option value="Большая">Большая</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="parcelDescription">Что находится внутри?</label>
+              <textarea
+                id="parcelDescription"
+                rows="3"
+                maxlength="500"
+                placeholder="Опиши содержимое посылки"
+                required
+              ></textarea>
+            </div>
+
+            <div class="notice">
+              Не отправляй запрещённые, опасные или незаконные предметы. До
+              передачи посылки согласуй условия и стоимость с перевозчиком.
+            </div>
+
+            <button type="submit" class="primary-button">Оформить заявку</button>
+            <p id="parcelMessage" class="form-message" role="status"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- БЕЗОПАСНОСТЬ -->
+      <section id="safetyPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">ТВОЯ БЕЗОПАСНОСТЬ ВАЖНА</span>
+          <h1>Путешествуй безопаснее</h1>
+          <p>Несколько важных правил для пассажиров и водителей.</p>
+        </div>
+
+        <div class="safety-grid">
+          <article class="feature-card">
+            <div class="feature-icon green">🪪</div>
+            <h3>Проверяй информацию</h3>
+            <p>
+              Уточняй имя водителя, автомобиль, маршрут и место встречи заранее.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon blue">📍</div>
+            <h3>Делись маршрутом</h3>
+            <p>
+              Сообщи близкому человеку, куда едешь и когда ожидаешь прибыть.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon orange">💬</div>
+            <h3>Обсуждай условия</h3>
+            <p>
+              Заранее согласуй стоимость, остановки, багаж и время отправления.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon purple">🚨</div>
+            <h3>При опасности</h3>
+            <p>
+              Если чувствуешь угрозу, попроси остановиться в безопасном месте и
+              обратись в экстренные службы.
+            </p>
+          </article>
+        </div>
+
+        <div class="notice">
+          Статус проверки водителя подтверждается администратором сервиса.
+        </div>
+      </section>
+
+      <!-- СООБЩЕНИЯ -->
+      <section id="messagesPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">ОБЩЕНИЕ С УЧАСТНИКАМИ</span>
+          <h1>Сообщения</h1>
+          <p>Чаты открываются после бронирования и видны только участникам.</p>
+        </div>
+
+        <div id="threadList" class="results-container"></div>
+
+        <div id="chatView" class="hidden">
+          <div class="form-card chat-card">
+            <div class="chat-head">
+              <button
+                id="chatBackButton"
+                class="secondary-button small"
+                type="button"
+              >
+                ← Назад
+              </button>
+              <div class="chat-head-info">
+                <strong id="chatTitle">—</strong>
+                <small id="chatSubtitle"></small>
+              </div>
+            </div>
+
+            <div id="chatMessages" class="chat-messages"></div>
+
+            <form id="chatForm" class="chat-form">
+              <input
+                id="chatInput"
+                type="text"
+                maxlength="2000"
+                placeholder="Напиши сообщение…"
+                autocomplete="off"
+                required
+              />
+              <button type="submit" class="primary-button">Отправить</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- ЛИЧНЫЙ КАБИНЕТ -->
+      <section id="profilePage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow" id="profileEyebrow">ТВОЙ АККАУНТ</span>
+          <h1 id="profilePageTitle">Личный кабинет</h1>
+          <p id="profileWelcome">Добро пожаловать в NurPoput!</p>
+        </div>
+
+        <div class="profile-card">
+          <div class="profile-head-modern">
+            <div class="single-avatar" id="singleAvatarBox" title="Фото профиля">
+              <!-- Нейтральная заглушка силуэта человека БЕЗ каких-либо букв -->
+              <svg id="avatarSvgPlaceholder" class="avatar-svg-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <!-- Единственный тег фото: отображается внутри единственного круга только после загрузки -->
+              <img id="avatarImage" class="avatar-img-view" alt="Фото профиля" style="display: none;" />
+            </div>
+
+            <div class="profile-header-details">
+              <h2 id="profileDisplayName" style="margin: 0; font-size: 20px;">—</h2>
+              <div>
+                <span id="profileRoleBadge" class="profile-role-pill">Пассажир</span>
+              </div>
+              <input
+                id="avatarInput"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+                style="display: none;"
+              />
+              <button
+                id="avatarUploadButton"
+                type="button"
+                class="secondary-button small"
+                style="margin-top: 6px;"
+              >
+                📷 Загрузить фото
+              </button>
+              <p id="avatarMessage" class="form-message" role="status" style="margin-top: 4px;"></p>
+            </div>
+          </div>
+
+          <!-- БАННЕР АДМИНИСТРАТОРА (виден только администратору) -->
+          <div id="profileAdminBanner" class="admin-card-alert" style="display: none;">
+            <div>
+              <strong style="color: #991b1b; display: block; margin-bottom: 4px;">🛡️ Панель администратора доступна</strong>
+              <span style="font-size: 14px; color: #7f1d1d;">Вы вошли как главный администратор. Вам доступно управление всеми пользователями, поездками и заказами сервиса.</span>
+            </div>
+            <button type="button" class="primary-button" id="btnAdminBannerGo" data-page="admin" style="background: #dc2626; border-color: #dc2626; white-space: nowrap;">
+              🛡️ Открыть админку →
+            </button>
+          </div>
+
+          <!-- БАЛАНС ПОЛЬЗОВАТЕЛЯ / ВОДИТЕЛЯ -->
+          <div class="user-balance-card" id="userBalanceBox" style="margin-bottom: 20px;">
+            <div class="balance-details">
+              <div style="display: flex; align-items: baseline; gap: 8px;">
+                <span class="balance-label" id="lblMyBalance" style="font-size: 15px; font-weight: 700; color: #374151;">💳 Мой баланс:</span>
+                <span class="balance-val" style="font-size: 22px; font-weight: 800; color: var(--green);"><strong id="profileBalanceValue">0</strong> сом</span>
+              </div>
+              <small class="balance-hint" id="lblBalanceHint" style="display: block; font-size: 12px; color: #6b7280; margin-top: 4px;">
+                Все поездки бесплатны. Баланс нужен для быстрого поднятия в VIP (50 сом) 🔥
+              </small>
+              <div id="profilePendingTopups" style="margin-top: 8px; font-size: 13px;"></div>
+            </div>
+            <div class="balance-action">
+              <button type="button" id="btnOpenTopupModal" class="primary-button small" style="white-space: nowrap;">
+                ➕ Пополнить баланс
+              </button>
+            </div>
+          </div>
+
+          <div class="profile-data-list">
+            <div class="profile-data-item">
+              <span id="lblProfName">Имя:</span>
+              <strong id="profileName">—</strong>
+            </div>
+            <div class="profile-data-item">
+              <span id="lblProfEmail">Электронная почта:</span>
+              <strong id="profileEmail">—</strong>
+            </div>
+            <div class="profile-data-item">
+              <span id="lblProfPhone">Телефон:</span>
+              <strong id="profilePhone">—</strong>
+            </div>
+          </div>
+
+          <button type="button" id="btnToggleEditProfile" class="secondary-button" style="margin-top: 15px; width: 100%;">
+            ✏️ Изменить почту, телефон или пароль
+          </button>
+
+          <!-- Форма изменения данных профиля -->
+          <form id="profileEditForm" style="display: none; margin-top: 15px; background: #f8faf9; padding: 16px; border-radius: 12px; border: 1px solid var(--border);">
+            <div style="margin-bottom: 10px;">
+              <label for="editProfileName" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Имя</label>
+              <input id="editProfileName" type="text" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1;" />
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <label for="editProfileEmail" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Электронная почта</label>
+              <input id="editProfileEmail" type="email" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1;" />
+            </div>
+
+            <div style="margin-bottom: 10px;">
+              <label for="editProfilePhone" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Номер телефона</label>
+              <input id="editProfilePhone" type="tel" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1;" />
+            </div>
+
+            <div style="margin-bottom: 12px;">
+              <label for="editProfilePassword" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Новый пароль (оставьте пустым, если не меняете)</label>
+              <input id="editProfilePassword" type="password" placeholder="Не менее 6 знаков" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1;" />
+            </div>
+
+            <p id="editProfileMessage" class="form-message" role="status" style="margin-bottom: 10px;"></p>
+
+            <div style="display: flex; gap: 10px;">
+              <button type="submit" class="primary-button" style="flex: 1;">Сохранить изменения</button>
+              <button type="button" id="btnCancelEditProfile" class="secondary-button" style="flex: 1;">Отмена</button>
+            </div>
+          </form>
+
+          <button id="logoutButton" class="secondary-button" style="margin-top: 15px; width: 100%;">
+            Выйти из аккаунта
+          </button>
+          <button id="deleteMyAccountButton" type="button" class="secondary-button" style="margin-top: 8px; width: 100%; color: #dc2626; border-color: #fca5a5; background: #fff5f5; font-size: 13px;">
+            🗑️ Удалить мой аккаунт
+          </button>
+        </div>
+
+        <!-- ВКЛАДКИ КАБИНЕТА ДЛЯ УДОБСТВА НА ТЕЛЕФОНАХ -->
+        <div class="profile-nav-tabs">
+          <button type="button" class="profile-nav-tab active" data-prof-tab="passenger" id="ptabPassenger">
+            💺 Пассажир
+          </button>
+          <button type="button" class="profile-nav-tab" data-prof-tab="driver" id="ptabDriver">
+            🚗 Водитель
+          </button>
+          <button type="button" class="profile-nav-tab" data-prof-tab="parcels" id="ptabParcels">
+            📦 Посылки
+          </button>
+          <button type="button" class="profile-nav-tab" data-prof-tab="notifications" id="ptabNotifs">
+            🔔 Уведомления
+          </button>
+        </div>
+
+        <!-- Содержимое вкладки Пассажира -->
+        <div id="profTabContentPassenger" class="profile-tab-pane">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+            <h3 class="eyebrow" id="lblMyBookings" style="margin: 0;">МОИ БРОНИРОВАНИЯ ПОЕЗДОК</h3>
+            <button class="text-button" data-page="home">Найти поездку →</button>
+          </div>
+          <div id="profileBookings"></div>
+        </div>
+
+        <!-- Содержимое вкладки Водителя -->
+        <div id="profTabContentDriver" class="profile-tab-pane" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+            <h3 class="eyebrow" id="lblMyRides" style="margin: 0;">МОИ ПОЕЗДКИ</h3>
+            <button class="primary-button small" data-page="publish">+ Новая поездка</button>
+          </div>
+
+          <!-- Переключатель: Активные поездки / Архив поездок -->
+          <div style="display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap;">
+            <button type="button" id="btnDriverTabActive" class="secondary-button active" style="font-size: 13px; padding: 6px 14px;">
+              🚗 Активные (<span id="driverActiveCount">0</span>)
+            </button>
+            <button type="button" id="btnDriverTabArchive" class="secondary-button" style="font-size: 13px; padding: 6px 14px;">
+              📁 Архив поездок (<span id="driverArchiveCount">0</span>)
+            </button>
+          </div>
+
+          <div id="profileRides"></div>
+          <div id="profileRidesArchive" style="display: none;"></div>
+
+          <h3 class="eyebrow" id="lblDriverRequests" style="margin: 24px 0 14px;">ЗАЯВКИ ПАССАЖИРОВ НА МОИ ПОЕЗДКИ</h3>
+          <div id="profileDriverBookings"></div>
+        </div>
+
+        <!-- Содержимое вкладки Посылок -->
+        <div id="profTabContentParcels" class="profile-tab-pane" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+            <h3 class="eyebrow" id="lblMyParcels" style="margin: 0;">МОИ ПОСЫЛКИ</h3>
+            <button class="primary-button small" data-page="parcels">+ Отправить посылку</button>
+          </div>
+          <div id="profileParcels"></div>
+        </div>
+
+        <!-- Содержимое вкладки Уведомлений -->
+        <div id="profTabContentNotifs" class="profile-tab-pane" style="display: none;">
+          <h3 class="eyebrow" id="lblNotifsTitle" style="margin: 0 0 14px;">УВЕДОМЛЕНИЯ</h3>
+          <div id="profileNotifications"></div>
+        </div>
+      </section>
+
+      <!-- АДМИНИСТРАТОР -->
+      <section id="adminPage" class="page">
+        <div class="page-heading">
+          <span class="eyebrow">УПРАВЛЕНИЕ СЕРВИСОМ</span>
+          <h1>Панель администратора</h1>
+          <p>
+            Здесь будет управление пользователями, поездками, посылками и
+            платежами.
+          </p>
+        </div>
+
+        <div class="notice">
+          Доступ разрешён только назначенному администратору через защищённую
+          серверную проверку.
+        </div>
+
+        <div class="feature-grid">
+          <article class="feature-card admin-stat-card active" data-admin-tab="users">
+            <div style="font-size: 26px; margin-bottom: 4px;">👥</div>
+            <h3>Пользователи</h3>
+            <p id="adminUsers">Загрузка…</p>
+            <span style="font-size: 13px; color: var(--green); font-weight: 700; margin-top: 6px; display: inline-block;">Открыть список →</span>
+          </article>
+
+          <article class="feature-card admin-stat-card" data-admin-tab="rides">
+            <div style="font-size: 26px; margin-bottom: 4px;">🚗</div>
+            <h3>Поездки</h3>
+            <p id="adminRides">Загрузка…</p>
+            <span style="font-size: 13px; color: var(--green); font-weight: 700; margin-top: 6px; display: inline-block;">Открыть список →</span>
+          </article>
+
+          <article class="feature-card admin-stat-card" data-admin-tab="parcels">
+            <div style="font-size: 26px; margin-bottom: 4px;">📦</div>
+            <h3>Посылки</h3>
+            <p id="adminParcels">Загрузка…</p>
+            <span style="font-size: 13px; color: var(--green); font-weight: 700; margin-top: 6px; display: inline-block;">Открыть список →</span>
+          </article>
+
+          <article class="feature-card admin-stat-card" data-admin-tab="payments">
+            <div style="font-size: 26px; margin-bottom: 4px;">🔥</div>
+            <h3 id="adminTabPaymentsTitle">VIP и Доходы</h3>
+            <p id="adminPayments">Загрузка…</p>
+            <span style="font-size: 13px; color: var(--green); font-weight: 700; margin-top: 6px; display: inline-block;">Открыть список →</span>
+          </article>
+        </div>
+
+        <!-- 1. СЕКЦИЯ ПОЛЬЗОВАТЕЛЕЙ -->
+        <div id="adminTabUsers" class="admin-pane card" style="margin-top: 24px; padding: 22px; background: white; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="margin: 0;">👥 Управление пользователями</h3>
+            <span style="color: #6b7280; font-size: 13px;">Управление аккаунтами и балансами водителей/пассажиров</span>
+          </div>
+          <div id="adminUsersList"></div>
+        </div>
+
+        <!-- 2. СЕКЦИЯ ПОЕЗДОК -->
+        <div id="adminTabRides" class="admin-pane card" style="display: none; margin-top: 24px; padding: 22px; background: white; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="margin: 0;">🚗 Все опубликованные поездки</h3>
+            <span style="color: #6b7280; font-size: 13px;">Модерация, статус VIP и удаление маршрутов</span>
+          </div>
+          <div id="adminRidesList"></div>
+        </div>
+
+        <!-- 3. СЕКЦИЯ ПОСЫЛОК -->
+        <div id="adminTabParcels" class="admin-pane card" style="display: none; margin-top: 24px; padding: 22px; background: white; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="margin: 0;">📦 Все заказы на посылки</h3>
+            <span style="color: #6b7280; font-size: 13px;">Управление отправлениями и VIP доставкой</span>
+          </div>
+          <div id="adminParcelsList"></div>
+        </div>
+
+        <!-- 4. СЕКЦИЯ VIP УСЛУГ И ДОХОДОВ -->
+        <div id="adminTabPayments" class="admin-pane card" style="display: none; margin-top: 24px; padding: 22px; background: white; border-radius: 16px; border: 1px solid var(--border);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+            <h3 style="margin: 0;">🔥 Доходы от VIP-услуг (50 сом) и пополнения баланса</h3>
+            <span style="color: #6b7280; font-size: 13px;">Все публикации бесплатны. Доход формируется от поднятия в VIP</span>
+          </div>
+          <div id="adminPaymentsList"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="#" class="logo" data-page="home">
+        <svg class="logo-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <rect width="48" height="48" rx="13" fill="#0a8f66" />
+          <path d="M1 44 L16 12 L31 44 Z" fill="#054b37" />
+          <path d="M16 12 L18.8 17.4 L13.2 17.4 Z" fill="#ffffff" />
+          <path d="M19 44 L35 17 L48 44 Z" fill="#0fa87a" />
+          <path d="M35 17 L37.5 21.6 L32.5 21.6 Z" fill="#ffffff" />
+          <path
+            d="M6 44 C 15 40.5, 17 34, 24 34 C 31 34, 33 40.5, 42 44"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="3.4"
+            stroke-linecap="round"
+          />
+          <text
+            x="24"
+            y="12.5"
+            text-anchor="middle"
+            font-family="Arial, Helvetica, sans-serif"
+            font-size="12"
+            font-weight="800"
+            letter-spacing="0.5"
+            fill="#ffffff"
+          >
+            NP
+          </text>
+        </svg>
+        <span>Nur<span class="logo-green">Poput</span></span>
+      </a>
+      <p>NurPoput — вместе выгоднее. Кыргызстан 🇰🇬</p>
+      <small
+        >Поездки, бронирования, посылки и сообщения сохраняются в общей базе
+        данных сервиса.</small
+      >
+    </footer>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПОПОЛНЕНИЯ БАЛАНСА -->
+    <div id="topupModal" class="modal-overlay" style="display: none;">
+      <div class="modal-content" style="max-height: 90vh; overflow-y: auto;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="margin: 0; font-size: 19px;" id="modalTopupTitle">💳 Пополнение баланса водителя</h3>
+          <button type="button" id="btnCloseTopupModal" style="background: none; border: none; font-size: 26px; cursor: pointer; color: #94a3b8; line-height: 1;">&times;</button>
+        </div>
+
+        <p style="margin: 0 0 12px; font-size: 13px; color: #475569;" id="modalTopupDesc">
+          Переведите нужную сумму через <b>MBank</b> или <b>О!Деньги</b> и прикрепите чек. Администратор проверит поступление и зачислит деньги на баланс.
+        </p>
+
+        <!-- БЛОК ВЫБОРА БАНКА И РЕКВИЗИТОВ -->
+        <div class="bank-info-box" style="margin-bottom: 14px;">
+          <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+            <button type="button" id="btnSelectMBank" class="bank-choice-btn active" style="flex: 1; padding: 10px 8px; border-radius: 10px; border: 2px solid #0284c7; background: #f0f9ff; color: #0369a1; font-weight: 700; font-size: 13px; cursor: pointer;">
+              🏦 MBank (Нурпери.Э)
+            </button>
+            <button type="button" id="btnSelectODengi" class="bank-choice-btn" style="flex: 1; padding: 10px 8px; border-radius: 10px; border: 2px solid #e2e8f0; background: #ffffff; color: #475569; font-weight: 700; font-size: 13px; cursor: pointer;">
+              📱 О!Деньги (Нурпери.Ж)
+            </button>
+          </div>
+
+          <div style="background: white; border-radius: 10px; padding: 10px 12px; border: 1px solid #bbf7d0; margin-bottom: 10px;">
+            <div style="font-size: 12px; color: #64748b; margin-bottom: 2px;">Номер для перевода:</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px;">
+              <span style="font-size: 18px; font-weight: 800; color: #0f172a; letter-spacing: 0.5px;">+996 700 30 31 33</span>
+              <button type="button" id="btnCopyPhone" class="btn-copy-tag" style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; border-radius: 6px; padding: 5px 10px; font-size: 12px; font-weight: 700; cursor: pointer;">
+                📋 Скопировать
+              </button>
+            </div>
+            <div id="bankRecipientNotice" style="margin-top: 6px; font-size: 13px; color: #15803d; font-weight: 600;">
+              Получатель в MBank: <b>Нурпери.Э</b>
+            </div>
+          </div>
+
+          <!-- КНОПКИ БЫСТРОГО ПЕРЕХОДА В БАНК -->
+          <div style="display: flex; gap: 8px;">
+            <button type="button" id="btnLaunchMBank" class="bank-app-link" style="flex: 1; background: linear-gradient(135deg, #0284c7, #0369a1); color: white; border: none; text-align: center; padding: 10px 8px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">
+              📲 Открыть MBank
+            </button>
+            <button type="button" id="btnLaunchODengi" class="bank-app-link" style="flex: 1; background: linear-gradient(135deg, #e11d48, #be123c); color: white; border: none; text-align: center; padding: 10px 8px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;">
+              📱 Открыть О!Деньги
+            </button>
+          </div>
+        </div>
+
+        <!-- СУММА -->
+        <div style="margin-bottom: 12px;">
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Сумма пополнения (сом):</label>
+          <div class="topup-presets" style="margin-top: 4px; margin-bottom: 8px;">
+            <button type="button" class="topup-preset-btn active" data-amount="50">50 сом (1 VIP)</button>
+            <button type="button" class="topup-preset-btn" data-amount="100">100 сом (2 VIP)</button>
+            <button type="button" class="topup-preset-btn" data-amount="200">200 сом</button>
+            <button type="button" class="topup-preset-btn" data-amount="500">500 сом</button>
+          </div>
+          <input id="topupCustomAmount" type="number" min="10" max="50000" value="50" style="width: 100%; padding: 10px 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 16px; font-weight: 700; color: #1f2937;" />
+        </div>
+
+        <!-- ОТПРАВИТЕЛЬ -->
+        <div style="margin-bottom: 12px;">
+          <label for="topupSenderInfo" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;" id="lblTopupSender">
+            Ваш номер или имя отправителя в банке:
+          </label>
+          <input id="topupSenderInfo" type="text" placeholder="Например: +996 700 123 456 или имя из чека" style="width: 100%; padding: 9px 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 14px;" required />
+        </div>
+
+        <!-- ПРИКРЕПЛЕНИЕ СКРИНШОТА ЧЕКА -->
+        <div style="margin-bottom: 14px;">
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">
+            Прикрепите скриншот / фото чека:
+          </label>
+          <div id="receiptDropBox" style="border: 2px dashed #94a3b8; border-radius: 10px; padding: 12px; text-align: center; background: #f8fafc; cursor: pointer;">
+            <input type="file" id="topupReceiptFile" accept="image/*" style="display: none;" />
+            <div id="receiptPlaceholder">
+              <span style="font-size: 24px; display: block; margin-bottom: 4px;">📸</span>
+              <span style="font-size: 13px; color: #0284c7; font-weight: 700;">Нажмите, чтобы прикрепить скриншот чека</span>
+              <div style="font-size: 11px; color: #64748b; margin-top: 2px;">Администратор проверит чек и сразу зачислит сумму</div>
+            </div>
+            <div id="receiptPreviewBox" style="display: none;">
+              <img id="receiptPreviewImg" src="" alt="Чек" style="max-height: 140px; max-width: 100%; border-radius: 6px; border: 1px solid #cbd5e1; object-fit: contain; margin-bottom: 6px;" />
+              <button type="button" id="btnRemoveReceipt" style="display: block; margin: 0 auto; background: none; border: none; color: #dc2626; font-size: 12px; cursor: pointer; font-weight: 600;">✕ Удалить фото</button>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" id="btnSubmitTopup" class="primary-button" style="width: 100%; min-height: 46px; font-size: 15px;">
+          📩 Я оплатил(а) — отправить заявку на проверку
+        </button>
+        <p id="topupModalMessage" class="form-message" style="margin-top: 10px; text-align: center;"></p>
+      </div>
+    </div>
+
+    <!-- ОКНО ПРОСМОТРА ЧЕКА (ДЛЯ АДМИНИСТРАТОРА И ВОДИТЕЛЯ) -->
+    <div id="receiptModal" class="modal-overlay" style="display: none; z-index: 3000;">
+      <div class="modal-content" style="max-width: 600px; text-align: center; background: #0f172a; color: white;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h4 style="margin: 0; color: white; font-size: 16px;">🧾 Чек об оплате</h4>
+          <button type="button" id="btnCloseReceiptModal" style="background: none; border: none; font-size: 26px; cursor: pointer; color: #cbd5e1; line-height: 1;">&times;</button>
+        </div>
+        <img id="receiptModalImg" src="" alt="Чек" style="max-width: 100%; max-height: 75vh; border-radius: 8px; object-fit: contain;" />
+      </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО БРОНИРОВАНИЯ МЕСТ ПАССАЖИРОМ -->
+    <div id="bookingModal" class="modal-overlay" style="display: none; z-index: 2500;">
+      <div class="modal-content" style="max-width: 480px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="margin: 0; font-size: 19px;" id="bookingModalTitle">💺 Бронирование мест</h3>
+          <button type="button" id="btnCloseBookingModal" style="background: none; border: none; font-size: 26px; cursor: pointer; color: #94a3b8; line-height: 1;">&times;</button>
+        </div>
+
+        <div id="bookingRideSummary" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 16px;">
+          <!-- Заполняется динамически -->
+        </div>
+
+        <form id="bookingSeatsForm">
+          <input type="hidden" id="bookingTargetRideId" value="" />
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label for="bookingSeatsCount" style="font-weight: 700; font-size: 14px; display: block; margin-bottom: 6px;">
+              Сколько мест вы хотите забронировать?
+            </label>
+            <select id="bookingSeatsCount" style="width: 100%; padding: 10px 14px; border-radius: 10px; border: 1.5px solid var(--green); font-size: 16px; font-weight: 700; color: #0f172a;">
+              <option value="1">1 место</option>
+            </select>
+            <small style="color: #64748b; font-size: 12px; display: block; margin-top: 4px;">
+              Можно забронировать сразу несколько мест для себя и попутчиков.
+            </small>
+          </div>
+
+          <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 14px; color: #065f46; font-weight: 600;">Итого к оплате водителю:</span>
+            <span style="font-size: 20px; font-weight: 900; color: #047857;"><span id="bookingTotalSum">0</span> сом</span>
+          </div>
+
+          <div style="font-size: 12px; color: #64748b; margin-bottom: 16px; line-height: 1.4;">
+            ℹ️ Оплата производится напрямую водителю при посадке. Никаких скрытых комиссий с пассажиров!
+          </div>
+
+          <button type="submit" id="btnConfirmBooking" class="primary-button" style="width: 100%; min-height: 48px; font-size: 15px;">
+            ✅ Подтвердить бронирование
+          </button>
+          <p id="bookingModalMessage" class="form-message" style="margin-top: 10px; text-align: center;"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО СОХРАНЕНИЯ ЗАЯВКИ НА ПОИСК МАШИНЫ -->
+    <div id="rideRequestModal" class="modal-overlay" style="display: none; z-index: 2500;">
+      <div class="modal-content" style="max-width: 480px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <h3 style="margin: 0; font-size: 19px;">🔔 Заявка на поиск машины</h3>
+          <button type="button" id="btnCloseRideRequestModal" style="background: none; border: none; font-size: 26px; cursor: pointer; color: #94a3b8; line-height: 1;">&times;</button>
+        </div>
+
+        <p style="margin: 0 0 14px; font-size: 14px; color: #475569; line-height: 1.4;">
+          Сейчас по этому направлению нет свободных машин. Оставьте заявку — <b>мы пришлем вам уведомление сразу же</b>, как только водитель создаст подходящую поездку!
+        </p>
+
+        <form id="saveRideRequestForm">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div>
+              <label for="reqFromCity" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Откуда</label>
+              <select id="reqFromCity" style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1;" required></select>
+            </div>
+            <div>
+              <label for="reqToCity" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Куда</label>
+              <select id="reqToCity" style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1;" required></select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div>
+              <label for="reqDate" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Дата поездки</label>
+              <input id="reqDate" type="date" style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1;" required />
+            </div>
+            <div>
+              <label for="reqTime" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Время (желаемое)</label>
+              <input id="reqTime" type="time" style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1;" />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+            <div>
+              <label for="reqSeats" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Сколько мест</label>
+              <select id="reqSeats" style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                <option value="1">1 место</option>
+                <option value="2">2 места</option>
+                <option value="3">3 места</option>
+                <option value="4">4+ мест</option>
+              </select>
+            </div>
+            <div>
+              <label for="reqCarClass" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Класс авто</label>
+              <select id="reqCarClass" style="width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #cbd5e1;">
+                <option value="">Любой</option>
+                <option value="economy">Эконом</option>
+                <option value="comfort">Комфорт</option>
+                <option value="business">Бизнес</option>
+                <option value="minivan">Минивэн</option>
+                <option value="premium">Премиум</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 14px;">
+            <label for="reqPassengerPhone" style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">
+              Ваш телефон для связи с водителем:
+            </label>
+            <input id="reqPassengerPhone" type="tel" placeholder="+996 ..." style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1;" required />
+          </div>
+
+          <button type="submit" id="btnSubmitRideRequest" class="primary-button" style="width: 100%; min-height: 46px; font-size: 15px;">
+            🔔 Сохранить заявку (бесплатно)
+          </button>
+          <p id="rideRequestModalMessage" class="form-message" style="margin-top: 10px; text-align: center;"></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- БАННЕР УСТАНОВКИ ПРИЛОЖЕНИЯ -->
+    <div id="pwaInstallBanner" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 32px); max-width: 440px; background: #ffffff; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.18); border: 1.5px solid #a7f3d0; padding: 12px 16px; z-index: 2900; align-items: center; gap: 12px;">
+      <div style="width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: #0a8f66; display: flex; align-items: center; justify-content: center; color: white; font-weight: 900; font-size: 18px;">NP</div>
+      <div style="flex: 1; min-width: 0;">
+        <div style="font-weight: 800; font-size: 14px; color: #0f172a; margin-bottom: 2px;">Установить приложение NurPoput</div>
+        <div style="font-size: 12px; color: #64748b; line-height: 1.3;">Поездки и посылки прямо с главного экрана смартфона!</div>
+      </div>
+      <div style="display: flex; gap: 6px; align-items: center;">
+        <button type="button" id="btnPwaInstall" class="primary-button" style="padding: 8px 14px; font-size: 13px; font-weight: 700; border-radius: 8px; white-space: nowrap;">Скачать</button>
+        <button type="button" id="btnPwaClose" style="background: none; border: none; font-size: 22px; color: #94a3b8; cursor: pointer; padding: 2px 6px; line-height: 1;">&times;</button>
+      </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ИНСТРУКЦИИ ДЛЯ IPHONE (iOS) -->
+    <div id="iosInstallModal" class="modal-overlay" style="display: none; z-index: 3000;">
+      <div class="modal-content" style="max-width: 420px; text-align: center;">
+        <div style="font-size: 38px; margin-bottom: 8px;">📲</div>
+        <h3 style="margin: 0 0 10px; font-size: 19px;">Как установить на iPhone</h3>
+        <p style="color: #475569; font-size: 14px; line-height: 1.5; margin-bottom: 16px;">
+          Чтобы приложение всегда было под рукой без открывания браузера:
+        </p>
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; text-align: left; font-size: 14px; color: #1e293b; display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;">
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="background: var(--green); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">1</span>
+            <span>Внизу браузера Safari нажмите кнопку <b>«Поделиться»</b> (квадрат со стрелкой вверх ⎋)</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="background: var(--green); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">2</span>
+            <span>Прокрутите список и нажмите <b>«На экран „Домой“»</b> (➕)</span>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <span style="background: var(--green); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0;">3</span>
+            <span>В правом верхнем углу нажмите <b>«Добавить»</b></span>
+          </div>
+        </div>
+        <button type="button" id="btnCloseIosModal" class="primary-button" style="width: 100%;">Понятно</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
