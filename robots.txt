@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nurpoput-kg.surge.sh/sitemap.xml
